@@ -6,3 +6,13 @@ git is gree software
 
 
   git ,success?
+
+
+
+git add filename;
+
+git commit -m "message";
+
+
+git push -u origin master
+
