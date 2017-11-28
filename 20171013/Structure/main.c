@@ -1,5 +1,76 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+
+// 指针指向堆区空间
+struct Cat
+{
+    int age;
+    int sex;
+};
+int main()
+{
+    struct Cat *p;
+    p = (struct Cat *)(malloc(sizeof(struct Cat)));
+
+    p->age = 20;
+    p->sex = 5;
+
+    printf("in duiqu %d,%d",p->age,p->sex);
+    if (p != NULL)
+    {
+        free(p);
+        p = NULL;
+    }
+}
+
+
+// 指针指向栈区空间
+struct Dog
+{
+    int sex;
+    int age;
+};
+int main06()
+{
+    struct Dog dog1 = {1,15};
+    fun_zhan(&dog1);
+    printf("after fun_zhan %d,%d", dog1.age,dog1.sex);
+}
+
+void fun_zhan(struct Dog *tmp)
+{
+    printf("before edit , %d, %d\n", tmp->age, tmp->sex);
+    tmp->age = 20;
+    tmp->sex = 2;
+    printf("after  edit , %d, %d\n", tmp->age, tmp->sex);
+}
+
+/*******************************************************上面的是新的一天开始，20171127***************************************************************************/
+
+// 思考题，定义一个结构体，值传递
+struct Human
+{
+    int sex;
+    char name[100];
+};
+
+void editHuman(struct Human tmp)
+{
+    printf("In editHuman111111,human sex = %d, name=%s\n",tmp.sex,tmp.name);
+    tmp.sex = 2;
+    strcpy(tmp.name, "xiaoming'borther");
+    printf("In editHuman,human sex = %d, name=%s\n",tmp.sex,tmp.name);
+}
+
+int main05()
+{
+    struct Human human = {1,"xiaoming"};
+    editHuman(human);
+    printf("In main,human sex = %d, name=%s\n",human.sex,human.name);
+
+}
+
 
 //结构体数组
 struct Auth
@@ -9,7 +80,7 @@ struct Auth
     float score;
 };
 
-int main()
+int main04()
 {
     // 一步到位main03做的事
     struct Auth a[5] = {
